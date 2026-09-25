@@ -439,7 +439,7 @@ Suppose:
 vector<int> v = {10, 20, 30, 40};
 ```
 
-``` cpp front() ```: Returns the first element
+- front() : Returns the first element
 ```cpp
 cout << v.front();
 ```
@@ -447,7 +447,7 @@ Output:10
 
 
 
-``` cpp back() ```: Returns the last element
+-  back() : Returns the last element
 ```cpp
 cout << v.back();
 ```

@@ -43,8 +43,8 @@ Data Storage  Function Objects
 ### i) Containers
 A container is used to store data.
 
-#### Real-life example
-hink of a container as a box.
+#### Real-life example:
+think of a container as a box.
 ```cpp
 Box
  ↓
@@ -213,8 +213,10 @@ Both can produce : 30
 A vector stores multiple elements like an array, but its size can grow or shrink dynamically.
 
 - Array vs Vector
+```cpp
 Array =Fixed size
 vector = Dynamic size
+```
 
 For example:
 ```cpp
@@ -228,7 +230,7 @@ vector<int> v;
 ```
 can grow as we add elements.
 
-#### Header File
+### Header File
 
 To use vector:
 ```cpp
@@ -347,11 +349,15 @@ Index:    0    1    2    3
 ```
 
 cout << v[0];
+```cpp
 Output:10
+```
 
 
 cout << v[2];
+```cpp
 Output:30
+```
 
 ---
 
@@ -368,7 +374,7 @@ Output:30
 
 ---
 
-#### [] vs at()
+#### [ ] vs at()
 ```cpp
 | `v[index]`                                 | `v.at(index)`                                 |
 | ------------------------------------------ | --------------------------------------------- |
@@ -433,10 +439,7 @@ Suppose:
 vector<int> v = {10, 20, 30, 40};
 ```
 
-```cpp
-front()
-```
-Returns the first element:
+```cpp front() ```: Returns the first element
 ```cpp
 cout << v.front();
 ```
@@ -444,10 +447,7 @@ Output:10
 
 
 
-```cpp
-back()
-```
-Returns the last element:
+```cpp back() ```: Returns the last element
 ```cpp
 cout << v.back();
 ```
@@ -571,8 +571,14 @@ resize() → size
 
 ## 5.Explain pair in C++
 ### Answer:
+A pair is an STL utility that stores two values together.
 
+- The two values can be of:
+Same data type
+Different data types
 
-
-
+ example
+ ```cpp
+pair<int, string>
+```
 

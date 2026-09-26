@@ -11,18 +11,22 @@ int main(){
     sort(v.begin(),v.end());
 
     for(auto x:v){
+
+        //HERE we Sort pairs by the first value instead of the second.
        cout<<x.first<<" "<<x.second<<endl;
     }
 
     cout<<"---------------------------------------"<<endl;
 
     //example 2
-    vector<pair<int, string>> s = {{10, "B"}, {10, "A"}, {20, "C"}
+    vector<pair<int, string>> s = {{20, "C"}, {30, "A"}, {10, "B"}
      };
     sort(s.begin(),s.end());
 
     for(auto p:s){
-       cout<<p.first<<" "<<p.second<<endl;
+
+        //HERE we Sort pairs by the second value instead of the first.
+       cout<<p.second<<" "<<p.first<<endl;
     }
 
 

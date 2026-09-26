@@ -7,13 +7,20 @@ int main(){
     //direct initialization
     pair<int ,string> student = {21,"Pratibha"};
    
-    cout<<student.first<<endl;
+    cout<<student.first<<"  ";
     cout<<student.second<<endl;
 
-    //make_pair by using initialization
-    pair<float,string> make_pk(2.5,"Pratibha");
+    //changing pair values
+       student.first=36;
+       student.second="Kanawade";
+       cout<<student.first<<" ";
+       cout<<student.second<<endl;
 
-    cout<<make_pk.first<<endl;
+
+    //make_pair by using initialization
+    pair<float,string> make_pk(2.5,"Raj");
+
+    cout<<make_pk.first<<"  ";
      cout<<make_pk.second<<endl;
 
 

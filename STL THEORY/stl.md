@@ -284,7 +284,7 @@ Here x gets each element one by one.
 
 ---
 
-### Adding Elements — push_back()
+### push_back()
 It adds an element at the end.
 
 #### Syntax:
@@ -454,9 +454,10 @@ cout << v.back();
 Output:40
 
 - Remember:
+```cpp
 front() → first element
 back()  → last element
-
+```
 ---
 
 ### pop_back()
@@ -502,7 +503,7 @@ vector<int> v = {10, 20, 30};
 
 v.clear();
 ````
-Now:```cpp [] ```
+Now:[] 
 
 
 You can check:
@@ -536,9 +537,9 @@ The size will be 3, but the capacity may be greater than 3.
 
 ---
 
-### reserve() vs resize()
+### reserve( ) vs resize( )
 
-- reserve()
+- reserve( )
 Reserves memory capacity.
 ```cpp
 vector<int> v;
@@ -551,7 +552,7 @@ So:
 v.size() is still: 0
 
 
-- resize()
+- resize( )
 Actually changes the number of elements.
 ```cpp
 vector<int> v;
@@ -564,21 +565,215 @@ For int, they are value-initialized to 0: 0 0 0 0 0
 
 
 - Remember:
+```cpp
 reserve() → capacity
 resize() → size
+```
 
 ---
 
 ## 5.Explain pair in C++
 ### Answer:
-A pair is an STL utility that stores two values together.
+- A pair is an STL utility that stores two values together.
 
 - The two values can be of:
+```cpp
 Same data type
 Different data types
+```
 
- example
+ #### Example:
  ```cpp
 pair<int, string>
 ```
+
+#### Real-Life Example
+
+Suppose you want to store:
+```cpp
+Student Roll Number + Student Name
+```
+
+Instead of creating two separate variables we can use pair
+```cpp
+pair<int, string> student = {21, "Pratibha"};
+```
+
+#### Header File
+
+You can also commonly use:
+```cpp
+#include <utility>
+```
+
+for competitive programming:
+```cpp
+#include <bits/stdc++.h>
+```
+
+### Syntax:
+```cpp
+pair<data_type1, data_type2> pair_name;
+```
+
+### Creating a Pair
+- Method 1: Direct initialization
+```cpp
+pair<int, string> p = {101, "Pratibha"};
+```
+
+- Method 2: make_pair()
+```cpp
+pair<int, string> p = make_pair(101, "Pratibha");
+```
+Both create the same type of pair.
+
+### Accessing Pair Elements
+A pair has two members:
+```cpp
+p.first
+p.second
+```
+### Changing Pair Values
+Pair members can be modified.
+
+```cpp
+pair<int, string> p = {101, "Pratibha"};
+
+p.first = 202;
+p.second = "Rahul";
+
+cout << p.first << " ";
+cout << p.second;
+```
+Output:
+202 Rahul
+
+### Pair with Vector
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    vector<pair<int, string>> students;
+
+    students.push_back({101, "Pratibha"});
+    students.push_back({102, "Asha"});
+    students.push_back({103, "Sneha"});
+
+    for(auto p : students)
+    {
+        cout << p.first << " " << p.second << endl;
+    }
+
+    return 0;
+}
+```
+OUTPUT:
+```cpp
+101 Pratibha
+102 Asha
+103 Sneha
+```
+
+### Nested Pair
+A pair can contain another pair.
+
+```cpp
+pair<int, pair<int, int>> p = {1, {10, 20}};
+```
+
+- Structure:
+```cpp
+p
+├── first  = 1
+└── second
+    ├── first  = 10
+    └── second = 20
+```
+
+- Access:
+```cpp
+cout << p.first << endl;
+cout << p.second.first << endl;
+cout << p.second.second << endl;
+```
+
+- Output:
+```cpp
+1
+10
+20
+```
+
+### Pair Comparison
+Pairs can be compared directly.
+
+For example:
+```cpp
+pair<int, int> p1 = {10, 20};
+pair<int, int> p2 = {10, 30};
+cout << (p1 < p2)<<endl;
+
+pair<string,int>pk={"Pratibha",21};
+pair<string,int>pk2={"Pratibha",21};
+cout<<(pk==pk2)<<endl>>;
+
+pair<int, int> count = {10, 20};
+pair<int, int> count2 = {10, 30};
+
+cout << (count > count2)<<endl>>;
+
+```
+Output:
+```cpp
+1
+1
+0
+```
+
+### Pair with sort()
+```cpp
+vector<pair<int, string>> v = {
+    {30, "C"},
+    {10, "D"},
+    {20, "B"}
+};
+
+sort(v.begin(), v.end());
+```
+Output:
+```cpp
+10 A
+20 D
+30 C
+```
+Explanation:
+By default, pairs are sorted by:
+```cpp
+first → then second 
+```
+
+---
+
+## 6. Pair vs Vector
+```cpp
+| Pair                          | Vector                 |
+| ----------------------------- | ---------------------- |
+| Stores exactly 2 values       | Stores multiple values |
+| `first`, `second`             | Index-based access     |
+| `pair<int,string>`            | `vector<int>`          |
+| Useful for related two values | Useful for collections |
+
+```
+---
+
+## 7.Array in STL
+### Answer:
+
+
+
+
 

@@ -11,5 +11,12 @@ int main(){
     cout<<"element at index two is:"<<arr.at(2)<<endl;
     cout<<"size of array is:"<<arr.size();
 
+    cout << "Array elements: ";
+
+    for(int x : arr)
+    {
+        cout << x << " ";
+    }
+
     return 0;
 }

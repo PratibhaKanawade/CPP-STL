@@ -770,10 +770,666 @@ first → then second
 ```
 ---
 
-## 7.Array in STL
+## 7. Explain array in STL
 ### Answer:
+### Defination:
+array is an STL container that stores a fixed number of elements of the same data type.
+
+It is similar to a normal C++ array, but STL array provides useful functions like:
+
+size() , front() , back() , at() , fill() , begin() , end() , empty()
+
+### Header File
+```cpp
+#include <array>
+```
+
+### Syntax:
+```cpp
+array<data_type, size> array_name;
+```
+
+### Initialization
+
+- Method 1: Direct initialization
+```cpp
+array<int, 5> arr = {10, 20, 30, 40, 50};
+```
 
 
+- Method 2: Partial initialization
+```cpp
+array<int, 5> arr = {10, 20, 30};
+```
+Remaining elements become 0.
+```cpp
+10 20 30 0 0
+```
 
 
+- Method 3: Empty array
+```cpp
+array<int, 5> arr;
+```
 
+Don't assume its elements are initialized. If you want zero initialization, use:
+
+```cpp
+array<int, 5> arr{};
+```
+Result: 0 0 0 0 0
+
+---  
+
+
+### Accessing Elements
+
+You can access elements using [].
+```cpp
+array<int, 5> arr = {10, 20, 30, 40, 50};
+
+cout << arr[0];
+cout << arr[2];
+```
+
+Output:
+```cpp
+10
+30
+```
+---
+
+
+### at()
+at() also accesses an element.
+```cpp
+cout << arr.at(2);
+```
+---
+
+
+### size()
+size() tells us the number of elements.
+```cpp
+array<int, 5> arr = {10,20,30,40,50};
+
+cout << arr.size();
+```
+---
+
+
+### front()
+front() gives the first element.
+```cpp
+cout << arr.front();
+```
+
+It is equivalent to: arr[0]
+---
+
+
+### back()
+back() gives the last element.
+```cpp
+cout << arr.back();
+```
+It is equivalent to:
+
+```cpp
+arr[arr.size() - 1]
+```
+---
+
+
+### fill()
+fill() puts the same value into all elements.
+
+```cpp
+array<int, 5> arr;
+
+arr.fill(100);
+```
+
+Now: 100 100 100 100 100 
+---
+
+
+### Iterating through array
+Using range-based for loop
+```cpp
+array<int, 5> arr = {10,20,30,40,50};
+
+for(int x : arr)
+{
+    cout << x << " ";
+}
+```
+
+Output: 10 20 30 40 50
+---
+
+
+### Using Iterator
+```cpp
+ array<int, 5> arr = {10,20,30,40,50};
+
+for(auto it = arr.begin(); it != arr.end(); it++)
+{
+    cout << *it << " ";
+}
+```
+
+Output: 10 20 30 40 50
+
+---
+
+## 8.Explain what is list
+### Answer:
+- list is an STL container that stores elements in a doubly linked list.
+
+- Unlike vector, elements in a list are not stored in continuous memory.
+
+- list is an STL container that allows fast insertion and deletion from anywhere in the list.
+
+Example:
+```cpp
+10 ⇄ 20 ⇄ 30 ⇄ 40 ⇄ 50
+```
+Each element is connected to the previous and next element.
+
+### Header File
+```cpp
+#include <list>
+```
+### Creating a List
+- Empty list
+```cpp
+list<int> l;
+```
+
+- Initialize
+```cpp
+list<int> l = {10, 20, 30, 40, 50};
+```
+
+- List of strings
+```cpp
+list<string> names = {"Pratibha", "Rahul", "Amit"};
+```
+
+---
+
+### push_back()
+Adds an element at the end.
+```cpp
+list<int> l = {10, 20, 30};
+
+l.push_back(40);
+```
+
+---
+
+### push_front()
+Adds an element at the beginning.
+```cpp
+l.push_front(5);
+```
+
+---
+
+### pop_back()
+Removes the last element.
+```cpp
+l.pop_back();
+```
+
+---
+
+### pop_front()
+Removes the first element.
+```cpp
+l.pop_front();
+```
+
+---
+
+### front() and back()
+- First element
+```cpp
+cout << l.front();
+```
+
+- Last element
+```cpp
+cout << l.back();
+```
+
+---
+
+### size()
+Returns the number of elements.
+```cpp
+cout << l.size();
+```
+
+--- 
+
+### empty()
+Checks whether the list is empty.
+```cpp
+if(l.empty())
+{
+    cout << "List is empty";
+}
+else
+{
+    cout << "List is not empty";
+}
+```
+- Returns:
+```cpp
+true → empty
+false → not empty
+```
+
+---
+
+### Traversing a List
+Range-based for loop
+```cpp
+list<int> l = {10, 20, 30, 40, 50};
+
+for(int x : l)
+{
+    cout << x << " ";
+}
+```
+
+---
+
+### Iterator with List
+```cpp
+list<int> l = {10, 20, 30};
+
+for(auto it = l.begin(); it != l.end(); it++)
+{
+    cout << *it << " ";
+}
+```
+
+---
+
+### insert()
+insert() adds an element before a specified position.
+
+##### Example:
+```cpp
+list<int> l = {10, 20, 40};
+
+auto it = l.begin();
+advance(it, 2);
+
+l.insert(it, 30);
+```
+
+##### Output:
+```cpp
+10 20 30 40
+```
+
+- Why advance()?
+A list iterator cannot directly jump using: it + 2
+
+Unlike a vector iterator, a list iterator is not a random-access iterator.
+
+So we use: advance(it, 2);
+
+---
+
+### erase()
+Removes an element at a particular iterator position.
+```cpp
+list<int> l = {10, 20, 30, 40};
+
+auto it = l.begin();
+advance(it, 2);
+
+l.erase(it);
+```
+
+##### OUTPUT:
+```cpp
+10 20 40
+```
+
+---
+
+### remove()
+It removes all elements having a particular value.
+
+```cpp
+list<int> l = {10, 20, 30, 20, 40, 20};
+
+l.remove(20);
+```
+
+##### OUTPUT:
+```cpp
+10 30 40
+```
+
+---
+
+### reverse()
+Reverses the list.
+```cpp
+list<int> l = {10, 20, 30, 40};
+
+l.reverse();
+```
+
+##### OUTPUT:
+```cpp
+40 30 20 10
+```
+
+---
+
+### sort()
+A list has its own sort() function.
+```cpp
+list<int> l = {40, 10, 30, 20};
+
+l.sort();
+```
+
+##### OUTPUT:
+```cpp
+10 20 30 40
+```
+- Important:
+Why can't we use sort(l.begin(), l.end())?
+Answer:
+```cpp
+std::sort() requires random-access iterators. A list provides bidirectional iterators.
+
+Use:
+l.sort();
+```
+
+---
+
+### unique()
+unique() removes consecutive duplicate elements.
+
+```cpp
+list<int> l = {10, 20, 20, 30, 30, 30, 40};
+
+l.unique();
+```
+##### OUTPUT:
+```cpp
+10 20 30 40
+```
+
+---
+
+## 9. Explain what is forward_list?
+### Answer:
+- forward_list is an STL container that implements a singly linked list.
+
+- Each node stores:
+```cpp
+[data | next]
+```
+- Example:
+```cpp
+10 → 20 → 30 → 40 → NULL
+```cpp
+- Unlike list, it only moves forward.
+```
+
+### Header File
+```cpp
+#include <forward_list>
+```
+
+### Creating a forward_list
+- Empty
+```cpp
+forward_list<int> fl;
+```
+- With values
+```cpp
+forward_list<int> fl = {10, 20, 30, 40};
+```
+
+---
+
+### push_front()
+forward_list supports adding elements at the beginning.
+```cpp
+forward_list<int> fl = {20, 30, 40};
+
+fl.push_front(10);
+```
+
+---
+
+### pop_front()
+Removes the first element.
+```cpp
+fl.pop_front();
+```
+
+---
+
+### Traversing forward_list
+Use a range-based loop:
+```cpp
+forward_list<int> fl = {10, 20, 30, 40};
+
+for(int x : fl)
+{
+    cout << x << " ";
+}
+```
+
+---
+
+### Using Iterators
+```cpp
+for(auto it = fl.begin(); it != fl.end(); it++)
+{
+    cout << *it << " ";
+}
+```
+##### Important:
+
+- A forward_list iterator can move: it++
+
+- but not backward: it--  
+
+--- 
+
+### No size() 
+- This is an important difference.
+
+- Unlike vector and list, forward_list does not provide:
+```cpp
+fl.size();   
+```
+
+- If you need the number of elements, you can use:
+```cpp
+cout << distance(fl.begin(), fl.end());
+```
+
+---
+
+### empty()
+You can check whether it is empty.
+```cpp
+if(fl.empty())
+{
+    cout << "Empty";
+}
+else
+{
+    cout << "Not empty";
+}
+```
+
+---
+
+### front()
+Returns the first element.
+```cpp
+cout << fl.front();
+```
+
+--- 
+
+### insert_after()
+It inserts a new element after a particular position.
+
+##### Example:
+```cpp
+forward_list<int> fl = {10, 20, 40};
+
+auto it = fl.begin();
+
+fl.insert_after(it, 30);
+```
+
+##### Output:
+```cpp
+10 → 30 → 20 → 40
+```
+
+##### Note:
+it was pointing to 10, so 30 was inserted after 10.
+
+---
+
+### erase_after()
+Removes the element after a particular iterator.
+
+##### Example:
+```cpp
+forward_list<int> fl = {10, 20, 30, 40};
+
+auto it = fl.begin();
+
+fl.erase_after(it);
+```
+
+##### OUTPUT:
+```cpp
+10 → 30 → 40
+```
+
+##### Note:
+it points to 10.
+
+So the element after 10, which is 20, gets removed.
+
+---
+
+### Why insert_after() instead of insert()?
+- Because a singly linked list only maintains a link to the next node.
+```cpp
+10 → 20 → 30
+```
+
+- If you know the node 10, it is easy to change:
+```cpp
+10 → 30 → 20
+```
+But there is no previous pointer.
+
+
+- Therefore forward_list provides:
+```cpp
+insert_after()
+erase_after()
+```
+
+---
+
+### remove()
+Removes all elements having a specific value.
+```cpp
+forward_list<int> fl = {10, 20, 30, 20, 40};
+
+fl.remove(20);
+```
+
+##### OUTPUT:
+```cpp
+10 → 30 → 40
+```
+
+--- 
+
+### remove_if()
+Removes elements according to a condition.
+
+##### Example: remove all even numbers.
+```cpp
+forward_list<int> fl = {10, 15, 20, 25, 30};
+
+fl.remove_if([](int x)
+{
+    return x % 2 == 0;
+});
+```
+
+##### OUTPUT:
+```cpp
+15 25
+```
+
+---
+
+### sort()
+You can sort a forward_list using its own sort().
+```cpp
+forward_list<int> fl = {40, 10, 30, 20};
+
+fl.sort();
+```
+
+---
+
+### reverse()
+Reverse the elements:
+```cpp
+fl.reverse();
+```
+
+--- 
+
+### unique()
+Removes consecutive duplicate elements.
+```cpp
+forward_list<int> fl = {10, 20, 20, 30, 30, 40};
+
+fl.unique();
+```
+##### OUTPUT:
+```cpp
+10 → 20 → 30 → 40
+```
+
+---
+
+### clear()
+Removes all elements.
+```cpp
+fl.clear();
+```
+
+---
+
+## 10.

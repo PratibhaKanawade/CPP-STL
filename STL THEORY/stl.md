@@ -1432,4 +1432,233 @@ fl.clear();
 
 ---
 
-## 10.
+## 10.Explain deque in C++ STL.
+### Answer:
+- deque stands for: Double Ended Queue
+
+- It allows us to insert and delete elements from both the front and the back.
+
+- Example:
+```cpp
+Front                         Back
+  ↓                             ↓
+10   20   30   40   50
+```
+- You can add:
+```cpp
+push_front() → 5
+push_back()  → 60
+```
+
+### Header File
+```cpp
+#include <deque>
+```
+
+### Creating a deque
+- Empty deque
+```cpp
+deque<int> dq;
+```
+
+- Initialize
+```cpp
+deque<int> dq = {10, 20, 30, 40};
+```
+
+- Create with 5 elements
+```cpp
+deque<int> dq(5);
+```
+This creates: 0 0 0 0 0
+
+- Five elements with value 10
+```cpp
+deque<int> dq(5, 10);
+```
+Result: 10 10 10 10 10
+
+---
+
+### push_back()
+Adds an element at the back.
+```cpp
+deque<int> dq = {10, 20, 30};
+
+dq.push_back(40);
+```
+
+---
+
+### push_front()
+Adds an element at the front.
+```cpp
+dq.push_front(5);
+```
+
+---
+
+### pop_back()
+Removes the last element.
+```cpp
+dq.pop_back();
+```
+
+---
+
+### pop_front()
+Removes the first element.
+```cpp
+dq.pop_front();
+```
+
+---
+
+### front() and back()
+- First element
+```cpp
+cout << dq.front();
+```
+
+- Last element
+```cpp
+cout << dq.back();
+```
+
+---
+
+### Accessing Elements
+Unlike list and forward_list, deque supports random access.
+
+You can use:
+```cpp
+dq[2]
+
+or:
+
+dq.at(2)
+```
+
+--- 
+
+### size()
+Returns the number of elements.
+
+```cpp
+dq.size()
+```
+
+---
+
+### empty()
+Checks whether the deque is empty.
+```cpp
+if(dq.empty())
+{
+    cout << "Deque is empty";
+}
+else
+{
+    cout << "Deque is not empty";
+}
+```
+
+--- 
+
+### Traversing a Deque
+Range-based loop
+```cpp
+deque<int> dq = {10, 20, 30, 40};
+
+for(int x : dq)
+{
+    cout << x << " ";
+}
+```
+
+---
+
+### Iterator
+```cpp
+for(auto it = dq.begin(); it != dq.end(); it++)
+{
+    cout << *it << " ";
+}
+``` 
+
+--- 
+
+### insert()
+You can insert an element at a particular position.
+```cpp
+deque<int> dq = {10, 20, 40};
+
+auto it = dq.begin() + 2;
+
+dq.insert(it, 30);
+```
+##### OUTPUT:
+```cpp
+10 20 30 40
+```
+
+--- 
+
+### erase()
+Removes an element from a particular position.
+```cpp
+deque<int> dq = {10, 20, 30, 40};
+
+dq.erase(dq.begin() + 2);
+```
+
+##### OUTPUT:
+```cpp
+10 20 40
+```
+
+---
+
+### clear()
+Removes all elements.
+```cpp
+dq.clear();
+```
+
+---
+
+## 11.Explain stack in C++ STL
+### Answer:
+- A stack is a container that follows:
+LIFO — Last In, First Out
+
+#### Real-life example 📚
+
+Imagine a stack of plates:
+```cpp
+      ┌───────┐
+      │ Plate │ ← Last added
+      ├───────┤
+      │ Plate │
+      ├───────┤
+      │ Plate │
+      └───────┘
+```
+You remove the top plate first.
+
+#### Header File
+```cpp
+#include <stack>
+```
+
+#### Creating a Stack
+```cpp
+stack<int> s;
+```
+This creates an empty integer stack.
+
+You can also create:
+```cpp
+stack<string> names;
+```
+

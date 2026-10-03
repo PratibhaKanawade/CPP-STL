@@ -1632,7 +1632,7 @@ dq.clear();
 - A stack is a container that follows:
 LIFO — Last In, First Out
 
-#### Real-life example 📚
+#### Real-life example:
 
 Imagine a stack of plates:
 ```cpp
@@ -1646,19 +1646,388 @@ Imagine a stack of plates:
 ```
 You remove the top plate first.
 
-#### Header File
+### Header File
 ```cpp
 #include <stack>
 ```
 
-#### Creating a Stack
+### Creating a Stack
 ```cpp
 stack<int> s;
-```
-This creates an empty integer stack.
 
-You can also create:
-```cpp
 stack<string> names;
+
 ```
+This creates an empty integer and string stack.
+
+---
+
+### push()
+push() adds an element to the top of the stack.
+```cpp
+stack<int> s;
+
+s.push(10);
+s.push(20);
+s.push(30);
+```
+Stack:
+```cpp
+TOP
+ ↓
+30
+20
+10
+```
+
+---
+
+### top()
+top() returns the element at the top.
+```cpp
+cout << s.top();
+```
+
+---
+
+### pop()
+pop() removes the top element.
+```cpp
+s.pop();
+```
+---
+
+### empty()
+Checks whether the stack is empty.
+```cpp
+if(s.empty())
+{
+    cout << "Stack is empty";
+}
+else
+{
+    cout << "Stack is not empty";
+}
+```
+
+- Returns:
+```cpp
+true → empty
+false → not empty
+```
+
+---
+
+### size()
+Returns the number of elements.
+```cpp
+cout << s.size();
+```
+
+--- 
+
+### How to Print All Stack Elements?
+
+A stack does not provide iterators like vector.
+
+So we normally use:
+```cpp
+stack<int> s;
+
+s.push(10);
+s.push(20);
+s.push(30);
+
+while(!s.empty())
+{
+    cout << s.top() << " ";
+    s.pop();
+}
+```
+##### OUTPUT:
+30 20 10
+
+---
+
+### stack Does Not Support Random Access
+
+- You cannot do:
+```cpp
+s[2];       // Wrong 
+s.at(2);    // Wrong 
+```
+
+- You can access only the top element.
+```cpp
+s.top();    // Correct
+```
+This is called a container adaptor.
+
+---
+
+### stack is a Container Adaptor 
+stack is not a completely independent data structure.
+
+It provides a restricted interface over another container.
+
+- By default, stack uses:
+
+```cpp
+deque
+```
+internally.
+
+- Conceptually:
+```cpp
+stack
+  ↓
+deque
+  ↓
+elements
+```
+You can also use another suitable underlying container, such as vector or list.
+
+- Example:
+```cpp
+stack<int, vector<int>> s;
+```
+Now the stack uses vector internally.
+
+---
+
+### Stack Using Vector
+```cpp
+stack<int, vector<int>> s;
+
+s.push(10);
+s.push(20);
+s.push(30);
+
+cout << s.top();
+```
+
+##### Output:
+30
+
+--- 
+
+### Time Complexity
+```cpp
+| Operation | Complexity |
+| --------- | ---------: |
+| `push()`  |       O(1) |
+| `pop()`   |       O(1) |
+| `top()`   |       O(1) |
+| `empty()` |       O(1) |
+| `size()`  |       O(1) |
+
+```
+
+---
+
+## 12.Explain queue in C++ STL
+### Answer:
+- A queue follows:
+FIFO — First In, First Out
+
+The element that enters first is removed first.
+
+### Real-life example 
+
+ People standing in a line:
+```cpp
+FRONT                         BACK
+  ↓                             ↓
+10 → 20 → 30 → 40 → 50
+```
+Person 10 came first, so 10 leaves first.
+
+### Header File
+```cpp
+#include <queue>
+```
+
+### Creating a Queue
+```cpp
+queue<int> q;
+
+queue<string> q;
+```
+
+---
+
+### push()
+push() adds an element at the back of the queue.
+```cpp
+queue<int> q;
+
+q.push(10);
+q.push(20);
+q.push(30);
+```
+
+Queue:
+```cpp
+FRONT              BACK
+ ↓                   ↓
+10 → 20 → 30
+
+```
+
+--- 
+
+### front()
+front() gives the element at the front.
+```cpp
+cout << q.front();
+```
+--- 
+
+### back()
+back() gives the element at the back.
+```cpp
+cout << q.back();
+```
+
+--- 
+
+### pop()
+pop() removes the element from the front.
+```cpp
+q.pop();
+```
+
+---
+
+### empty()
+Checks whether the queue is empty.
+```cpp
+if(q.empty())
+{
+    cout << "Queue is empty";
+}
+else
+{
+    cout << "Queue is not empty";
+}
+```
+
+---
+
+### size()
+Returns the number of elements.
+```cpp
+cout << q.size();
+```
+
+---
+
+### Printing All Queue Elements
+A queue does not provide normal iterators for traversal.
+```cpp
+while(!q.empty())
+{
+    cout << q.front() << " ";
+    q.pop();
+}
+ ```
+
+ ---
+
+ ### Queue Does Not Support Random Access
+- You cannot do:
+```cpp
+q[2];       // Wrong
+q.at(2);    // Wrong
+```
+
+- You can access only:
+```cpp
+q.front();
+q.back();
+```
+
+--- 
+
+### Queue is a Container Adaptor
+Like stack, queue is a container adaptor.
+
+- By default, it uses:
+```cpp
+deque
+```
+internally.
+
+- Conceptually:
+```cpp
+queue
+  ↓
+deque
+  ↓
+elements
+```
+
+- You normally write:
+```cpp
+queue<int> q;
+```
+
+### Queue Using List
+You can specify another suitable underlying container:
+
+```cpp
+queue<int, list<int>> q;
+
+q.push(10);
+q.push(20);
+q.push(30);
+
+cout << q.front();
+```
+
+##### OUTPUT:
+```cpp
+10
+```
+
+---
+
+## 13.Difference between Queue vs Stack
+### Answer:
+```cpp
+| Stack               | Queue                   |
+| ------------------- | ----------------------- |
+| LIFO                | FIFO                    |
+| Last In First Out   | First In First Out      |
+| `push()`            | `push()`                |
+| `pop()` removes top | `pop()` removes front   |
+| `top()`             | `front()`               |
+| Example: plates     | Example: people in line |
+
+```
+
+---
+
+## 14.Difference between Queue vs Deque
+### Answer:
+```cpp
+ | Queue             | Deque                          |
+| ----------------- | ------------------------------ |
+| FIFO interface    | Double-ended                   |
+| Insert at back    | Insert front/back              |
+| Remove from front | Remove front/back              |
+| `push()`          | `push_front()` / `push_back()` |
+| `pop()`           | `pop_front()` / `pop_back()`   |
+| No random access  | Random access supported        |
+```
+
+---
+
+## 
+
+
+
+
+
+
 

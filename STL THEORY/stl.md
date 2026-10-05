@@ -2336,6 +2336,8 @@ Removes all elements.
 s.clear();
 ```
 
+---
+
 ### begin() and end()
 We can iterate through a set using iterators.
 
@@ -2361,6 +2363,7 @@ cout << s[2];
 A set does not support random access.
 
 - Why?
+
 Because a set is generally implemented using a balanced tree structure, not a contiguous array.
 
 ---
@@ -2483,7 +2486,6 @@ ms.erase(20);
 ```
 removes all 20s
 
-This removes ALL occurrences of 20.
 
 - Case 2: erase(iterator)
 If you want to remove only one occurrence:

@@ -1972,6 +1972,8 @@ elements
 queue<int> q;
 ```
 
+---
+
 ### Queue Using List
 You can specify another suitable underlying container:
 
@@ -2023,10 +2025,537 @@ cout << q.front();
 
 ---
 
-## 
+## 15.Explain priority_queue in C++ STL
+### Answer:
+A priority queue is a special type of queue where the element with the highest priority comes out first.
+
+- In a priority queue:
+```cpp
+Highest Priority → First Out
+```
+
+By default in C++, the largest element has the highest priority.
+
+### Real-Life Example
+Imagine a hospital emergency room :
+```cpp
+Patient	Priority
+A	2
+B	5
+C	1
+D	10
+```
+The patient with priority 10 will be treated first.
+
+Similarly:
+```cpp
+10
+5
+2
+1
+```
+The largest element comes first.
+
+### Header File
+```cpp
+#include <queue>
+```
+### Syntax
+```cpp
+priority_queue<int> pq;
+```
+
+---
+
+### push()
+Used to insert an element.
+```cpp
+pq.push(10);
+pq.push(50);
+pq.push(20);
+```
+Priority queue automatically arranges its internal structure.
+
+--- 
+
+### top()
+Returns the highest-priority element.
+```cpp
+cout << pq.top();
+```
+
+---
+
+### pop()
+Removes the highest-priority element.
+```cpp
+pq.pop();
+```
+
+---
+
+### Maximum Heap
+The default priority_queue works like a max heap.
+
+```cpp
+priority_queue<int> pq;
+```
+
+Means: Largest element stays at the top.
+
+Example:
+```cpp
+Input:
+10 5 30 20 40
+
+Output:
+40 30 20 10 5
+```
+
+---
+
+### Minimum Priority Queue
+Sometimes we want the smallest element first.
+
+Then we use:
+```cpp
+priority_queue<int, vector<int>, greater<int>> pq;
+```
+
+---
+
+### Time Complexity
+```cpp
+| Operation | Complexity |
+| --------- | ---------: |
+| `push()`  |   O(log n) |
+| `pop()`   |   O(log n) |
+| `top()`   |       O(1) |
+| `empty()` |       O(1) |
+| `size()`  |       O(1) |
+```
+- Why is push()/pop() O(log n)?
+
+Because priority queue is generally implemented using a heap.
+
+---
+
+## 16.Explain set in C++ STL
+### Answer:
+A set is an STL container that:
+
+- stores unique elements
+- automatically keeps elements in sorted order
+- does not allow duplicates
+- provides efficient searching, insertion and deletion
+
+### Real-Life Example
+- Imagine a list of registered student IDs:
+```cpp
+101
+105
+101
+103
+105
+```
+
+We don't want duplicate IDs.
+
+- A set automatically gives:
+```cpp
+101
+103
+105
+```
+
+- Set = Unique + Sorted
+
+### Header File
+```cpp
+#include <set>
+```
+
+### Syntax
+```cpp
+set<data_type> set_name;
+```
+
+---
+
+### insert()
+Used to add an element.
+
+```cpp
+Before:
+10 20 30
+
+insert(20)
+
+After:
+10 20 30
+```
+If 20 already exists  then No duplicate is created.
+
+---
+
+### size()
+Returns the number of unique elements.
+```cpp
+cout << s.size();
+```
+
+##### Example:
+```cpp
+set<int> s = {10, 20, 20, 30, 30};
+```
+Here set contains 10,20,30 therefore s.size() is 3.
+
+---
+
+### empty()
+Checks whether the set is empty.
+```cpp
+if(s.empty())
+{
+    cout << "Set is empty";
+}
+else
+{
+    cout << "Set is not empty";
+}
+```
+
+- Returns:
+```cpp
+true → empty
+false → not empty
+```
+
+---
+
+### find()
+Used to search for an element.
+```cpp
+s.find(30);
+```
+
+But find() returns an iterator, not directly true/false.
+
+- Example:
+```cpp
+if(s.find(30) != s.end())
+{
+    cout << "Element found";
+}
+else
+{
+    cout << "Element not found";
+}
+```
+- Why s.end()?
+
+If the element is not found:
+```cpp
+s.find(30)
+```
+
+- returns:
+```cpp
+s.end()
+```
+
+- So:
+```cpp
+s.find(x) != s.end()
+```
+
+means: Element exists.
+
+---
+
+### count()
+Another easy way to check whether an element exists.
+```cpp
+s.count(30);
+```
+
+- For a set, count() can return only:
+```cpp
+0 → element doesn't exist
+1 → element exists
+```
+
+- Example:
+```cpp
+if(s.count(30))
+{
+    cout << "Found";
+}
+```
+
+- Important:
+In a set, duplicates are not allowed, so the count can never be greater than 1.
+
+---
+
+### erase()
+Used to remove an element.
+
+Does not print the set. It prints the number of elements erased.
+
+```cpp
+s.erase(30);
+```
+
+- Example:
+```cpp
+Before:
+10 20 30 40
+
+erase(30)
+
+After:
+10 20 40
+```
+
+- You can also erase using an iterator:
+```cpp
+auto it = s.find(30);
+
+if(it != s.end())
+{
+    s.erase(it);
+}
+```
+
+---
+
+### clear()
+Removes all elements.
+```cpp
+s.clear();
+```
+
+### begin() and end()
+We can iterate through a set using iterators.
+
+```cpp
+set<int> s = {40, 10, 30, 20};
+
+for(auto it = s.begin(); it != s.end(); it++)
+{
+    cout << *it << " ";
+}
+```
+
+##### Output:
+10 20 30 40
+
+---
+
+### Why Can't We Use s[2]?
+This is wrong:
+```cpp
+cout << s[2];
+```
+A set does not support random access.
+
+- Why?
+Because a set is generally implemented using a balanced tree structure, not a contiguous array.
+
+---
+
+### Time Complexity 
+A standard set is generally implemented using a balanced BST.
+```cpp
+| Operation  | Complexity |
+| ---------- | ---------: |
+| `insert()` |   O(log n) |
+| `erase()`  |   O(log n) |
+| `find()`   |   O(log n) |
+| `count()`  |   O(log n) |
+| `begin()`  |       O(1) |
+| `size()`   |       O(1) |
+
+```
+
+## 17.Explain multiset in C++ STL
+### Answer:
+A multiset is an STL container that:
+
+- stores elements in sorted order
+- allows duplicate elements
+- supports searching, insertion and deletion
+- does not support random access
 
 
+### Header File
+```cpp
+#include <set>
+```
 
+### Syntax:
+```cpp
+multiset<data_type> name;
+```
+
+---
+
+### insert()
+Adds an element.
+
+```cpp
+ms.insert(20);
+```
+
+Unlike set, inserting 20 multiple times creates multiple copies.
+```cpp
+ms.insert(20);
+ms.insert(20);
+ms.insert(20);
+```
+
+##### OUTPUT:
+```cpp
+20 20 20
+```
+
+---
+
+### size()
+Returns the total number of elements, including duplicates.
+
+```cpp
+cout << ms.size();
+```
+
+### count() 
+count() is particularly useful with multiset.
+
+##### Example:
+```cpp
+multiset<int> ms = {10, 20, 20, 20, 30};
+cout << ms.count(20);
+```
+
+##### Output:
+```cpp
+3
+```
+
+Because 20 occurs three times.
+
+- Compare with set
+1. set:
+```cpp
+10 20 30
+
+count(20) → 1
+```
+
+2. multiset:
+```cpp
+10 20 20 20 30
+
+count(20) → 3
+```
+
+---
+
+### find()
+Used to find an element.
+
+```cpp
+if(it != ms.end())
+{
+    cout << "Found";
+}
+```
+
+---
+
+### erase()
+There are two common forms.
+
+- Case 1: erase(value)
+```cpp
+ms.erase(20);
+```
+removes all 20s
+
+This removes ALL occurrences of 20.
+
+- Case 2: erase(iterator)
+If you want to remove only one occurrence:
+
+```cpp
+auto it = ms.find(20);
+
+if(it != ms.end())
+{
+    ms.erase(it);
+}
+```
+removes one 20
+
+---
+
+### empty()
+```cpp
+if(ms.empty())
+{
+    cout << "Empty";
+}
+```
+
+- Returns:
+```cpp
+true  → empty
+false → not empty
+```
+
+---
+
+### clear()
+Removes everything.
+```cpp
+ms.clear();
+```
+
+--- 
+
+### Traversing a Multiset
+- You can use a range-based loop:
+```cpp
+for(auto x : ms)
+{
+    cout << x << " ";
+}
+```
+
+- Or an iterator:
+```cpp
+for(auto it = ms.begin(); it != ms.end(); it++)
+{
+    cout << *it << " ";
+}
+```
+
+---
+
+### Time Complexity
+```cpp
+| Operation         |     Complexity |
+| ----------------- | -------------: |
+| `insert()`        |       O(log n) |
+| `find()`          |       O(log n) |
+| `erase(iterator)` | Amortized O(1) |
+| `erase(value)`    |   O(log n + k) |
+| `count()`         |   O(log n + k) |
+| `size()`          |           O(1) |
+
+```
+Here k represents the number of matching elements.
 
 
 

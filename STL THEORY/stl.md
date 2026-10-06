@@ -2559,6 +2559,18 @@ for(auto it = ms.begin(); it != ms.end(); it++)
 ```
 Here k represents the number of matching elements.
 
+---
+
+## 18.Explain unordered_set in C++ STL
+### Answer:
+unordered_set is an STL container that:
+
+- stores unique elements
+- does not maintain sorted order
+- uses hashing
+- provides average O(1) insertion, deletion and search
+
+
 
 
 

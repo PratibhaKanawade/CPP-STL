@@ -2570,7 +2570,156 @@ unordered_set is an STL container that:
 - uses hashing
 - provides average O(1) insertion, deletion and search
 
+### Header File
+```cpp
+#include <unordered_set>
+```
 
+### Syntax:
+```cpp
+unordered_set<data_type> name;
+```
+
+---
+
+### insert()
+Used to add an element.
+```cpp
+us.insert(10);
+us.insert(20);
+us.insert(30);
+```
+
+Duplicate values are ignored.
+```cpp
+us.insert(10);
+us.insert(10);
+us.insert(10);
+```
+Still only one 10 is stored.
+
+---
+
+### find() 
+Used to search for an element.
+
+```cpp
+if(us.find(30) != us.end())
+{
+    cout << "Element found";
+}
+else
+{
+    cout << "Element not found";
+}
+```
+
+### count()
+You can also check existence using count().
+
+```cpp
+if(us.count(30))
+{
+    cout << "Element found";
+}
+```
+- For an unordered_set:
+
+```cpp
+count(x) = 0 → not present
+count(x) = 1 → present
+```
+Because duplicates are not allowed.
+
+---
+
+### erase()
+Remove an element:
+```cpp
+us.erase(30);
+```
+
+- You can also erase using an iterator:
+```cpp
+auto it = us.find(30);
+
+if(it != us.end())
+{
+    us.erase(it);
+}
+```
+
+---
+
+### size()
+```cpp
+cout << us.size();
+```
+Returns the number of unique elements.
+
+##### Example:
+```cpp
+unordered_set<int> us = {10,20,20,30,30};
+```
+
+The set contains:
+```cpp
+10 20 30
+```
+
+Therefore:
+```cpp
+size = 3
+```
+
+--- 
+
+### empty()
+```cpp
+if(us.empty())
+{
+    cout << "Empty";
+}
+```
+
+- Returns:
+```cpp
+true → empty
+false → not empty
+```
+
+---
+
+### clear()
+Removes everything.
+```cpp
+us.clear();
+```
+
+---
+
+### Traversing unordered_set
+
+- Use a range-based loop:
+```cpp
+for(auto x : us)
+{
+    cout << x << " ";
+}
+```
+
+- Or iterator:
+```cpp
+for(auto it = us.begin(); it != us.end(); it++)
+{
+    cout << *it << " ";
+}
+```
+Again, the order is not guaranteed.
+
+---
+
+###
 
 
 

@@ -2614,6 +2614,8 @@ else
 }
 ```
 
+---
+
 ### count()
 You can also check existence using count().
 
@@ -2719,7 +2721,105 @@ Again, the order is not guaranteed.
 
 ---
 
-###
+### Time Complexity
+```cpp
+| Operation         |     Complexity |
+| ----------------- | -------------- |
+| `insert()`        | O(1) average   |
+| `erase()`         | O(1) average   |
+| `search() `       |  O(1) average  |
+```
+
+---
+
+## 19.Explain map in C++ STL 
+### Answer:
+A normal map:
+
+- A map stores key-value pairs
+```cpp
+key → value
+```
+- keys are unique
+- keys are automatically sorted
+- each key maps to one value
+- searching by key is generally O(log n)
+
+
+### Real Life Example:
+```cpp
+| Roll No. | Name     |
+| -------: | -------- |
+|      103 | Neha     |
+|      101 | Pratibha |
+|      102 | Rahul    |
+```
+
+Here:
+```cpp
+101 = key
+"Pratibha" = value
+```
+
+### Header File
+```cpp
+#include <map>
+```
+
+### Syntax:
+```cpp
+map<key_type, value_type> map_name;
+```
+---
+
+### Insert Using []
+
+- Syntax:
+```cpp
+map_name[key] = value;
+```
+
+- Example:
+```cpp
+map<int, string> students;
+
+students[101] = "Pratibha";
+```
+---
+
+### Access a Value
+Suppose:
+```cpp
+map<int, string> students;
+
+students[101] = "Pratibha";
+students[102] = "Rahul";
+```
+
+- We can access:
+```cpp
+cout << students[101];
+```
+
+- Output: Pratibha
+
+---
+
+### insert()
+- We can also insert using insert().
+```cpp
+students.insert({101, "Pratibha"});
+```
+
+- Another way:
+```cpp
+students.insert(make_pair(102, "Rahul"));
+```
+
+
+
+
+
 
 
 

@@ -2811,6 +2811,12 @@ cout << students[101];
 students.insert({101, "Pratibha"});
 ```
 
+- Insert Using []
+```cpp
+students[101] = "Pratibha";
+students[102] = "Rahul";
+```
+
 - Another way:
 ```cpp
 students.insert(make_pair(102, "Rahul"));

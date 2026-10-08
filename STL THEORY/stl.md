@@ -2770,21 +2770,7 @@ Here:
 ```cpp
 map<key_type, value_type> map_name;
 ```
----
 
-### Insert Using []
-
-- Syntax:
-```cpp
-map_name[key] = value;
-```
-
-- Example:
-```cpp
-map<int, string> students;
-
-students[101] = "Pratibha";
-```
 ---
 
 ### Access a Value
@@ -2823,6 +2809,143 @@ students.insert(make_pair(102, "Rahul"));
 ```
 
 ---
+
+### Difference Between [] and insert()
+
+-  map[key] = value 
+  Insert→ If the key already not exists
+  Update→ If the key already exists
+
+  - map.insert({key, value}) 
+  Insert only if the key does not already exist
+
+  ---
+
+  ### find() 
+- Used to search for a key.
+```cpp
+auto it = students.find(101);
+```
+
+- Check:
+```cpp
+if(students.find(101) != students.end())
+{
+    cout << "Key found";
+}
+```
+
+- If key doesn't exist:
+```cpp
+students.find(999) == students.end()
+```
+
+---
+
+### Access Value Through Iterator
+```cpp
+if(it != students.end())
+{
+    cout << "Roll No: " << it->first << endl;
+    cout << "Name: " << it->second << endl;
+}
+```
+
+---
+
+### count()
+We can also check whether a key exists.
+```cpp
+if(students.count(101))
+{
+    cout << "Found";
+}
+```
+
+---
+
+### erase()
+Remove a key:
+```cpp
+students.erase(101);
+```
+
+---
+
+### size()
+```cpp
+cout << students.size();
+```
+
+Returns the number of key-value pairs.
+
+- Example:
+```cpp
+101 → Pratibha
+102 → Rahul
+103 → Neha
+```
+
+- Size: 3
+
+---
+
+### empty()
+```cpp
+if(students.empty())
+{
+    cout << "Map is empty";
+}
+```
+
+---
+
+### clear()
+Removes all key-value pairs:
+```cpp
+students.clear();
+```
+
+---
+
+### Traversing a Map
+- Range-based loop
+```cpp
+for(auto x : students)
+{
+    cout << x.first << " " << x.second << endl;
+}
+```
+
+- Iterator
+```cpp
+for(auto it = students.begin(); it != students.end(); it++)
+{
+    cout << it->first << " " << it->second << endl;
+}
+```
+
+---
+
+### Map Complexity 
+For a normal std::map:
+
+```cpp
+| Operation  | Complexity |
+| ---------- | ---------: |
+| `insert()` |   O(log n) |
+| `find()`   |   O(log n) |
+| `erase()`  |   O(log n) |
+| `[]`       |   O(log n) |
+| `count()`  |   O(log n) |
+| `size()`   |       O(1) |
+
+```
+
+---
+
+### 
+
 
 
 

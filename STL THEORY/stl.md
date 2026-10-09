@@ -2813,11 +2813,15 @@ students.insert(make_pair(102, "Rahul"));
 ### Difference Between [] and insert()
 
 -  map[key] = value 
+```cpp
   Insert→ If the key already not exists
   Update→ If the key already exists
+  ```
 
   - map.insert({key, value}) 
+  ```cpp
   Insert only if the key does not already exist
+  ```
 
   ---
 
@@ -2944,7 +2948,439 @@ For a normal std::map:
 
 ---
 
-### 
+## 20.Explain multimap in C++ STL
+### Answer:
+multimap stores key-value pairs, allows multiple values with the same key, and keeps keys sorted.
+
+### Real-life example:
+A company has multiple employees in the same department.
+```cpp
+Department → Employee
+ENTC       → Pratibha
+ENTC       → Rahul
+CSE        → Amit
+ENTC       → Sneha
+```
+
+### Header File
+```cpp
+#include <map>
+```
+
+### Syntax
+```cpp
+multimap<key_type, value_type> name;
+```
+
+---
+
+### insert()
+We use insert() to add elements.
+
+```cpp
+mm.insert({101, "Pratibha"});
+mm.insert({101, "Rahul"});
+```
+
+Both are inserted.
+
+Unlike map, there is no restriction that the key must be unique.
+
+---
+
+### Important: No operator[]
+with multimap, this is not allowed:
+
+```cpp
+multimap<int, string> mm;
+
+mm[101] = "Pratibha";  // Wrong 
+
+```
+
+Because one key can have multiple values.
+
+So C++ cannot decide which value mm[101] should represent.
+
+---
+
+### find()
+We can search for a key using find().
+
+```cpp
+auto it = mm.find(101);
+```
+
+Example:
+```cpp
+if(it != mm.end())
+{
+    cout << it->first << " -> " << it->second;
+}
+```
+If there are multiple 101 keys, find() gives an iterator to one matching element.
+
+If you want all values for a key, use equal_range().
+
+---
+
+### count()
+count() tells us how many times a key exists.
+
+```cpp
+cout << mm.count(101);
+```
+
+- Suppose:
+```cpp
+101 → Pratibha
+101 → Rahul
+101 → Sneha
+```
+
+- Then: count(101) = 3 
+
+---
+
+### equal_range()
+It gives the range containing all elements with a particular key.
+
+```cpp
+equal_range(key)
+       ↓
+┌──────────────────┐
+│ all matching key │
+└──────────────────┘
+
+```
+
+```cpp
+auto range = mm.equal_range(101);
+
+for(auto it = range.first; it != range.second; it++)
+{
+    cout << it->first << " -> " << it->second << endl;
+}
+```
+
+- For:
+```cpp
+101 → Pratibha
+101 → Rahul
+101 → Sneha
+102 → Amit
+```
+
+- Output:
+```cpp
+101 → Pratibha
+101 → Rahul
+101 → Sneha
+```
+
+---
+
+### erase()
+There are two important forms.
+
+1. Erase by key
+```cpp
+mm.erase(101);
+```
+
+This removes ALL elements having key 101.
+
+2. Erase using iterator
+```cpp
+auto it = mm.find(101);
+
+if(it != mm.end())
+{
+    mm.erase(it);
+}
+```
+
+This removes only one element.
+
+---
+
+### size()
+Returns total number of key-value pairs.
+
+```cpp
+cout << mm.size();
+```
+
+---
+
+### empty()
+```cpp
+if(mm.empty())
+{
+    cout << "Multimap is empty";
+}
+```
+
+---
+
+### clear()
+Removes everything.
+```cpp
+mm.clear();
+```
+
+---
+
+### begin() and end()
+
+```cpp
+for(auto it = mm.begin(); it != mm.end(); it++)
+{
+    cout << it->first << " -> " << it->second << endl;
+}
+
+```
+
+---
+
+## 21.Explain unordered_map in C++ STL
+### Answer:
+An unordered_map is an STL container that stores data in key-value pairs, allows unique keys, and does not store keys in sorted order.
+
+### Header File
+```cpp
+#include <unordered_map>
+```
+
+### Syntax
+```cpp
+unordered_map<key_type, value_type> name;
+```
+
+---
+
+### insert()
+Adds a key-value pair.
+
+```cpp
+unordered_map<int, string> students;
+
+students.insert({101, "Pratibha"});
+students.insert({102, "Priya"});
+```
+
+If the key already exists, insert() does not replace its existing value.
+
+---
+
+###  operator[]
+Inserts a new key or updates the value of an existing key.
+
+```cpp
+students[101] = "Pratibha";
+students[102] = "Priya";
+students[101] = "Rahul";
+```
+
+---
+
+### find()
+Searches for a key.
+
+```cpp
+auto it = students.find(101);
+
+if(it != students.end())
+{
+    cout << "Key found";
+}
+else
+{
+    cout << "Key not found";
+}
+```
+
+find() returns an iterator to the element if found; otherwise, it returns students.end().
+
+---
+
+### count()
+Checks whether a key exists.
+
+```cpp
+cout << students.count(101);
+```
+
+For unordered_map, count() returns either 1 or 0, because keys are unique.
+
+---
+
+### erase()
+Removes an element using its key.
+
+```cpp
+students.erase(101);
+```
+
+---
+
+### size()
+Returns the total number of key-value pairs.
+
+```cpp
+cout << students.size();
+```
+
+---
+
+### empty()
+Checks whether the container is empty.
+
+```cpp
+if(students.empty())
+{
+    cout << "Map is empty";
+}
+```
+
+---
+
+### clear()
+Removes all elements.
+
+```cpp
+students.clear();
+```
+
+---
+
+### begin() and end()
+Used to traverse the container.
+
+```cpp
+for(auto it = students.begin();
+    it != students.end(); it++)
+{
+    cout << it->first << " -> "
+         << it->second << endl;
+}
+```
+
+---
+
+### Time Complexity
+Let n be the number of elements in the container.
+
+```cpp
+| Operation     | Average Case | Worst Case |
+|---------------|-------------:|-----------:|
+| `insert()`    |        O(1)  |       O(n) |
+| `find()`      |        O(1)  |       O(n) |
+| `erase(key)`  |        O(1)  |       O(n) |
+| `operator[]`  |        O(1)  |       O(n) |
+| `size()`      |        O(1)  |       O(1) |
+```
+Worst-case performance can degrade because of hash collisions.
+
+---
+
+### Explain Iterators in C++ STL
+### Answer:
+An iterator is an object used to access and traverse elements of STL containers such as vector, list, set, and map.
+
+### Header File
+```cpp
+#include <iostream>
+#include <vector>
+#include <iterator>
+using namespace std;
+```
+
+Include the relevant container header, such as <vector>, <list>, or <map>, depending on the container you use.
+
+### Syntax:
+
+```cpp
+container_type::iterator it;
+```
+
+##### Example:
+```cpp
+vector<int>::iterator it;
+```
+
+- You can also use auto:
+```cpp
+auto it = v.begin();
+```
+
+---
+
+### Important Iterator Functions
+
+- begin() = Returns an iterator to the first element
+
+- end() = Returns an iterator to the position after the last element
+
+- rbegin() = Returns a reverse iterator to the last element
+
+- rend() = Returns a reverse iterator to the position before the first element
+
+- cbegin() = Returns a constant iterator to the first element
+
+- cend() = Returns a constant iterator to the position after the last element
+
+---
+
+### Iterator Types
+
+```cpp
+Iterator Type                  Description
+
+Input Iterator                 Reads elements while moving forward
+
+Output Iterator                Writes elements while moving forward
+
+Forward Iterator               Moves forward through elements
+
+Bidirectional Iterator         Moves forward and backward
+
+Random Access Iterator         Supports jumping directly to positions
+```
+
+##### Examples:
+
+- forward_list → forward iterator
+
+- list, map, set → bidirectional iterators
+
+- vector, deque, array → random-access iterators
+
+---
+
+### Time Complexity
+```cpp
+Operation                                             Complexity
+
+begin()                                                   O(1)
+
+end()                                                     O(1)
+
+rbegin()                                                  O(1)
+
+rend()                                                    O(1)
+
+Iterator increment ++it                                   O(1)
+
+advance(it, n) with forward/bidirectional iterator        O(n)
+
+advance(it, n) with random-access iterator                O(1)
+
+```
+
+
+
+
 
 
 

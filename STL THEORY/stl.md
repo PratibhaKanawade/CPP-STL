@@ -141,18 +141,27 @@ After sort:
 
 ### Important STL Algorithms
 ```cpp
-| Function | Description |
-| -------- | ----------- |
-| `sort()` | Sorts elements in ascending order by default |
-| `reverse()` | Reverses the order of elements |
-| `find()` | Searches for a particular element |
-| `count()` | Counts occurrences of an element |
-| `min_element()` | Returns an iterator to the smallest element |
-| `max_element()` | Returns an iterator to the largest element |
-| `binary_search()` | Checks whether an element exists in a sorted range |
-| `lower_bound()` | Finds the first element greater than or equal to a value in a sorted range |
-| `upper_bound()` | Finds the first element strictly greater than a value in a sorted range |
-| `accumulate()` | Calculates the sum of elements by default |
+Function                         Description                
+
+ `sort()`             =  Sorts elements in ascending order by default 
+
+ `reverse()`          = Reverses the order of elements 
+
+ `find()`             = Searches for a particular element 
+
+ `count()`            = Counts occurrences of an element 
+
+ `min_element()`      = Returns an iterator to the smallest element 
+
+ `max_element()`      = Returns an iterator to the largest element 
+
+ `binary_search()`    = Checks whether an element exists in a sorted range 
+
+ `lower_bound()`      =  Finds the first element greater than or equal to a value in a sorted range 
+
+ `upper_bound()`      = Finds the first element strictly greater than a value in a sorted range 
+
+ `accumulate()`       = Calculates the sum of elements by default 
 ```
 
 ---

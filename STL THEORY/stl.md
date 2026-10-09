@@ -96,9 +96,17 @@ vector<int> numbers = {10, 20, 30, 40};
 ```
 Here, vector is a container.
 
+---
+
 ### ii) Algorithms
 
-Algorithms are ready-made functions that perform operations on data.
+Algorithms are ready-made functions that perform operations on data such as sorting, searching, counting, and reversing elements in containers.
+
+#### Header Files
+```cpp
+#include <algorithm>
+#include <numeric>   // for accumulate()
+```
 
 For example:
 ```cpp
@@ -130,21 +138,84 @@ Before:
 After sort:
 10 20 30 40 50
 ```
-Other STL algorithms include:
+
+### Important STL Algorithms
 ```cpp
-find()
-sort()
-reverse()
-count()
-max_element()
-min_element()
+| Function | Description |
+| -------- | ----------- |
+| `sort()` | Sorts elements in ascending order by default |
+| `reverse()` | Reverses the order of elements |
+| `find()` | Searches for a particular element |
+| `count()` | Counts occurrences of an element |
+| `min_element()` | Returns an iterator to the smallest element |
+| `max_element()` | Returns an iterator to the largest element |
+| `binary_search()` | Checks whether an element exists in a sorted range |
+| `lower_bound()` | Finds the first element greater than or equal to a value in a sorted range |
+| `upper_bound()` | Finds the first element strictly greater than a value in a sorted range |
+| `accumulate()` | Calculates the sum of elements by default |
 ```
+
+---
+
+### Time Complexity
+```cpp
+Operation                           Average / typical complexity  
+
+sort()                                   O(n log n)
+
+reverse()                                O(n)
+
+find()                                   O(n)
+
+count()                                  O(n)
+
+min_element()                            O(n)
+
+max_element()                            O(n)
+
+binary_search()                          O(log n) comparisons
+
+lower_bound()                            O(log n) comparisons
+
+upper_bound()                            O(log n) comparisons
+
+accumulate()                             O(n)
+```
+
+---
+
 
 ### iii) Iterators
 
-An iterator is used to move through/access elements of a container.
+An iterator is an object used to access and traverse elements of STL containers such as vector, list, set, and map.
 
-For example:
+### Header File
+```cpp
+#include <iostream>
+#include <vector>
+#include <iterator>
+using namespace std;
+```
+
+Include the relevant container header, such as <vector>, <list>, or <map>, depending on the container you use.
+
+### Syntax:
+
+```cpp
+container_type::iterator it;
+```
+
+##### Example:
+```cpp
+vector<int>::iterator it;
+```
+
+- You can also use auto:
+```cpp
+auto it = v.begin();
+```
+
+- For example:
 ```cpp
 vector<int> v = {10, 20, 30};
 
@@ -159,6 +230,68 @@ Output:
 ```
 Think of it like a pointer that moves through a container.
 
+### Important Iterator Functions
+
+- begin() = Returns an iterator to the first element
+
+- end() = Returns an iterator to the position after the last element
+
+- rbegin() = Returns a reverse iterator to the last element
+
+- rend() = Returns a reverse iterator to the position before the first element
+
+- cbegin() = Returns a constant iterator to the first element
+
+- cend() = Returns a constant iterator to the position after the last element
+
+---
+
+### Iterator Types
+
+```cpp
+Iterator Type                  Description
+
+Input Iterator                 Reads elements while moving forward
+
+Output Iterator                Writes elements while moving forward
+
+Forward Iterator               Moves forward through elements
+
+Bidirectional Iterator         Moves forward and backward
+
+Random Access Iterator         Supports jumping directly to positions
+```
+
+##### Examples:
+
+- forward_list → forward iterator
+
+- list, map, set → bidirectional iterators
+
+- vector, deque, array → random-access iterators
+
+---
+
+### Time Complexity
+```cpp
+Operation                                             Complexity
+
+begin()                                                   O(1)
+
+end()                                                     O(1)
+
+rbegin()                                                  O(1)
+
+rend()                                                    O(1)
+
+Iterator increment ++it                                   O(1)
+
+advance(it, n) with forward/bidirectional iterator        O(n)
+
+advance(it, n) with random-access iterator                O(1)
+
+```
+
 ---
 
 ## 3. Explain Function Objects in STL
@@ -166,6 +299,13 @@ Think of it like a pointer that moves through a container.
 A function object/functor is an object that behaves like a function by overloading:
 ```cpp
 operator()
+```
+
+### Header File
+```cpp
+#include <iostream>
+#include <functional>
+using namespace std;
 ```
 
 ### Syntax:
@@ -3281,112 +3421,5 @@ Let n be the number of elements in the container.
 | `size()`      |        O(1)  |       O(1) |
 ```
 Worst-case performance can degrade because of hash collisions.
-
----
-
-### Explain Iterators in C++ STL
-### Answer:
-An iterator is an object used to access and traverse elements of STL containers such as vector, list, set, and map.
-
-### Header File
-```cpp
-#include <iostream>
-#include <vector>
-#include <iterator>
-using namespace std;
-```
-
-Include the relevant container header, such as <vector>, <list>, or <map>, depending on the container you use.
-
-### Syntax:
-
-```cpp
-container_type::iterator it;
-```
-
-##### Example:
-```cpp
-vector<int>::iterator it;
-```
-
-- You can also use auto:
-```cpp
-auto it = v.begin();
-```
-
----
-
-### Important Iterator Functions
-
-- begin() = Returns an iterator to the first element
-
-- end() = Returns an iterator to the position after the last element
-
-- rbegin() = Returns a reverse iterator to the last element
-
-- rend() = Returns a reverse iterator to the position before the first element
-
-- cbegin() = Returns a constant iterator to the first element
-
-- cend() = Returns a constant iterator to the position after the last element
-
----
-
-### Iterator Types
-
-```cpp
-Iterator Type                  Description
-
-Input Iterator                 Reads elements while moving forward
-
-Output Iterator                Writes elements while moving forward
-
-Forward Iterator               Moves forward through elements
-
-Bidirectional Iterator         Moves forward and backward
-
-Random Access Iterator         Supports jumping directly to positions
-```
-
-##### Examples:
-
-- forward_list → forward iterator
-
-- list, map, set → bidirectional iterators
-
-- vector, deque, array → random-access iterators
-
----
-
-### Time Complexity
-```cpp
-Operation                                             Complexity
-
-begin()                                                   O(1)
-
-end()                                                     O(1)
-
-rbegin()                                                  O(1)
-
-rend()                                                    O(1)
-
-Iterator increment ++it                                   O(1)
-
-advance(it, n) with forward/bidirectional iterator        O(n)
-
-advance(it, n) with random-access iterator                O(1)
-
-```
-
-
-
-
-
-
-
-
-
-
-
 
 
